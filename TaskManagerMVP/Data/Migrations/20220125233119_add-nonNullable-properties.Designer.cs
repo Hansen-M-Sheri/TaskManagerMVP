@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManagerMVP.Data;
 
@@ -11,9 +12,10 @@ using TaskManagerMVP.Data;
 namespace TaskManagerMVP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220125233119_add-nonNullable-properties")]
+    partial class addnonNullableproperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -522,7 +524,7 @@ namespace TaskManagerMVP.Migrations
             modelBuilder.Entity("TaskManagerMVP.Models.Ticket", b =>
                 {
                     b.HasOne("TaskManagerMVP.Models.Project", "Project")
-                        .WithMany()
+                        .WithMany("Tickets")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -560,6 +562,11 @@ namespace TaskManagerMVP.Migrations
                     b.Navigation("TicketType");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TaskManagerMVP.Models.Project", b =>
+                {
+                    b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("TaskManagerMVP.Models.TicketPriority", b =>

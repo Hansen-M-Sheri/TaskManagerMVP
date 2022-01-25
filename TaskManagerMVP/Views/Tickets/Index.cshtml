@@ -31,13 +31,13 @@
                 @Html.DisplayNameFor(model => model.Project)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TicketTypeId)
+                @Html.DisplayNameFor(model => model.TicketType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TicketStatusId)
+                @Html.DisplayNameFor(model => model.TicketStatus)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TicketPriorityId)
+                @Html.DisplayNameFor(model => model.TicketPriority)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IsActive)
@@ -67,13 +67,13 @@
                 @Html.DisplayFor(modelItem => item.Project.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TicketTypeId)
+                @Html.DisplayFor(modelItem => item.TicketType.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TicketStatusId)
+                @Html.DisplayFor(modelItem => item.TicketStatus.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TicketPriorityId)
+                @Html.DisplayFor(modelItem => item.TicketPriority.Description)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsActive)

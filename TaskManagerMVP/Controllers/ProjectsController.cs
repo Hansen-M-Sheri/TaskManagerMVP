@@ -20,11 +20,6 @@ namespace TaskManagerMVP.Controllers
             _context = context;
         }
 
-        //private async Task UpdateTicketListAndResetModelState(Project project)
-        //{
-        //    ModelState.Clear();
-        //    //Find 
-        //}
         // GET: Projects
         public async Task<IActionResult> Index()
         {
@@ -62,7 +57,6 @@ namespace TaskManagerMVP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Description,IsActive")] Project project)
         {
-           // UpdateTicketListAndResetModelState( project); 
             if (ModelState.IsValid)
             {
                 _context.Add(project);

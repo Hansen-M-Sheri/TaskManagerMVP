@@ -20,10 +20,11 @@ namespace TaskManagerMVP.Controllers
             _context = context;
         }
 
+        
         // GET: Tickets
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Tickets.Include(t => t.Project).Include(t => t.User);
+            var applicationDbContext = _context.Tickets.Include(t => t.Project).Include(t => t.TicketPriority).Include(t => t.TicketStatus).Include(t => t.TicketType).Include(t => t.User);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -37,6 +38,9 @@ namespace TaskManagerMVP.Controllers
 
             var ticket = await _context.Tickets
                 .Include(t => t.Project)
+                .Include(t => t.TicketPriority)
+                .Include(t => t.TicketStatus)
+                .Include(t => t.TicketType)
                 .Include(t => t.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (ticket == null)
@@ -51,6 +55,9 @@ namespace TaskManagerMVP.Controllers
         public IActionResult Create()
         {
             ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Description");
+            ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Description");
+            ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Description");
+            ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes, "Id", "Description");
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
             return View();
         }
@@ -62,6 +69,7 @@ namespace TaskManagerMVP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Description,StartDate,EndDate,UserId,ProjectId,TicketTypeId,TicketStatusId,TicketPriorityId,IsActive")] Ticket ticket)
         {
+            
             if (ModelState.IsValid)
             {
                 _context.Add(ticket);
@@ -69,6 +77,9 @@ namespace TaskManagerMVP.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Description", ticket.ProjectId);
+            ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Description", ticket.TicketPriorityId);
+            ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Description", ticket.TicketStatusId);
+            ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes, "Id", "Description", ticket.TicketTypeId);
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", ticket.UserId);
             return View(ticket);
         }
@@ -87,6 +98,9 @@ namespace TaskManagerMVP.Controllers
                 return NotFound();
             }
             ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Description", ticket.ProjectId);
+            ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Description", ticket.TicketPriorityId);
+            ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Description", ticket.TicketStatusId);
+            ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes, "Id", "Description", ticket.TicketTypeId);
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", ticket.UserId);
             return View(ticket);
         }
@@ -124,6 +138,9 @@ namespace TaskManagerMVP.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Description", ticket.ProjectId);
+            ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Description", ticket.TicketPriorityId);
+            ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Description", ticket.TicketStatusId);
+            ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes, "Id", "Description", ticket.TicketTypeId);
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", ticket.UserId);
             return View(ticket);
         }
@@ -138,6 +155,9 @@ namespace TaskManagerMVP.Controllers
 
             var ticket = await _context.Tickets
                 .Include(t => t.Project)
+                .Include(t => t.TicketPriority)
+                .Include(t => t.TicketStatus)
+                .Include(t => t.TicketType)
                 .Include(t => t.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (ticket == null)

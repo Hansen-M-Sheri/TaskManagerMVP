@@ -26,33 +26,32 @@ namespace TaskManagerMVP.Models
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
 
-        //Navigation Properties
+        
         [Display(Name = "User")]
         [Required(ErrorMessage = "User Id is required to map the contact to a user correctly")]
         public string UserId { get; set; }
-        public virtual ApplicationUser User { get; set; }
-
 
         [Display(Name = "Project")]
         [Required(ErrorMessage = "Project is required")]
-        [ForeignKey("ProjectId")]
         public int ProjectId { get; set; }
-        public virtual Project Project { get; set; }
-
+        
         [Display(Name = "Ticket Type")]
         public int TicketTypeId { get; set; }
-        public virtual TicketType TicketType { get; set; }
-
+        
         [Display(Name = "Status")]
         public int TicketStatusId { get; set; }
-        public virtual TicketStatus TicketStatus { get; set; }
-
+        
         [Display(Name = "Priority")]
         public int TicketPriorityId { get; set; }
-        public virtual TicketPriority TicketPriority { get; set; }
-
+        
         public bool IsActive { get; set; }
 
-
+        //Hack-made all nav properties nullable to avoid modelState.isValid = false in create/edit tickets
+        //Navigation Properties
+        public ApplicationUser? User { get; set; }
+        public Project? Project { get; set; }
+        public TicketType? TicketType { get; set; }
+        public TicketStatus? TicketStatus { get; set; }
+        public TicketPriority? TicketPriority { get; set; }
     }
 }
