@@ -19,3 +19,4 @@ namespace TaskManagerMVP.Models
         public bool IsActive { get; set; }
     }
 }
+

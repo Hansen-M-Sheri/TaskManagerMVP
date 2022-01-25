@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TaskManagerMVP.Models
 {
@@ -37,7 +32,7 @@ namespace TaskManagerMVP.Models
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
 
-        
+
         [Display(Name = "Project")]
         [Required(ErrorMessage = "Project is required")]
         [ForeignKey("ProjectId")]
@@ -55,6 +50,6 @@ namespace TaskManagerMVP.Models
 
         public bool IsActive { get; set; }
 
-        
+
     }
 }
