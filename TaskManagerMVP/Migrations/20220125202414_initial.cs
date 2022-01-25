@@ -242,9 +242,27 @@ namespace TaskManagerMVP.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_Tickets_Priorities_TicketPriorityId",
+                        column: x => x.TicketPriorityId,
+                        principalTable: "Priorities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Tickets_Projects_ProjectId",
                         column: x => x.ProjectId,
                         principalTable: "Projects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Tickets_Statuses_TicketStatusId",
+                        column: x => x.TicketStatusId,
+                        principalTable: "Statuses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Tickets_TicketTypes_TicketTypeId",
+                        column: x => x.TicketTypeId,
+                        principalTable: "TicketTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -324,6 +342,21 @@ namespace TaskManagerMVP.Migrations
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Tickets_TicketPriorityId",
+                table: "Tickets",
+                column: "TicketPriorityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tickets_TicketStatusId",
+                table: "Tickets",
+                column: "TicketStatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tickets_TicketTypeId",
+                table: "Tickets",
+                column: "TicketTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tickets_UserId",
                 table: "Tickets",
                 column: "UserId");
@@ -347,16 +380,7 @@ namespace TaskManagerMVP.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Priorities");
-
-            migrationBuilder.DropTable(
-                name: "Statuses");
-
-            migrationBuilder.DropTable(
                 name: "Tickets");
-
-            migrationBuilder.DropTable(
-                name: "TicketTypes");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -365,7 +389,16 @@ namespace TaskManagerMVP.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
+                name: "Priorities");
+
+            migrationBuilder.DropTable(
                 name: "Projects");
+
+            migrationBuilder.DropTable(
+                name: "Statuses");
+
+            migrationBuilder.DropTable(
+                name: "TicketTypes");
         }
     }
 }

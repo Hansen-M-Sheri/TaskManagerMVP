@@ -20,7 +20,7 @@ namespace TaskManagerMVP.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime StartDate { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.Now;
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
@@ -37,16 +37,19 @@ namespace TaskManagerMVP.Models
         [Required(ErrorMessage = "Project is required")]
         [ForeignKey("ProjectId")]
         public int ProjectId { get; set; }
-        public Project Project { get; set; }
+        public virtual Project Project { get; set; }
 
         [Display(Name = "Ticket Type")]
         public int TicketTypeId { get; set; }
+        public virtual TicketType TicketType { get; set; }
 
         [Display(Name = "Status")]
         public int TicketStatusId { get; set; }
+        public virtual TicketStatus TicketStatus { get; set; }
 
         [Display(Name = "Priority")]
         public int TicketPriorityId { get; set; }
+        public virtual TicketPriority TicketPriority { get; set; }
 
         public bool IsActive { get; set; }
 

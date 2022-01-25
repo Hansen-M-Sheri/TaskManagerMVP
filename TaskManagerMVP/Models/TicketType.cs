@@ -22,5 +22,8 @@ namespace TaskManagerMVP.Models
         [StringLength(TaskManagerConstants.MAX_STATUS_DESCRIPTION_LENGTH, ErrorMessage = "Ticket Type Description must be less than 500 characters")]
         public string Description { get; set; }
         public bool IsActive { get; set; }
+
+        //Navigation Properties for relationships
+        public List<Ticket> Tickets { get; set; }
     }
 }

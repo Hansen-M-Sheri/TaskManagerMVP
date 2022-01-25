@@ -303,6 +303,12 @@ namespace TaskManagerMVP.Migrations
 
                     b.HasIndex("ProjectId");
 
+                    b.HasIndex("TicketPriorityId");
+
+                    b.HasIndex("TicketStatusId");
+
+                    b.HasIndex("TicketTypeId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Tickets");
@@ -516,8 +522,26 @@ namespace TaskManagerMVP.Migrations
             modelBuilder.Entity("TaskManagerMVP.Models.Ticket", b =>
                 {
                     b.HasOne("TaskManagerMVP.Models.Project", "Project")
-                        .WithMany("Tickets")
+                        .WithMany()
                         .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TaskManagerMVP.Models.TicketPriority", "TicketPriority")
+                        .WithMany("Tickets")
+                        .HasForeignKey("TicketPriorityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TaskManagerMVP.Models.TicketStatus", "TicketStatus")
+                        .WithMany("Tickets")
+                        .HasForeignKey("TicketStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TaskManagerMVP.Models.TicketType", "TicketType")
+                        .WithMany("Tickets")
+                        .HasForeignKey("TicketTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -529,10 +553,26 @@ namespace TaskManagerMVP.Migrations
 
                     b.Navigation("Project");
 
+                    b.Navigation("TicketPriority");
+
+                    b.Navigation("TicketStatus");
+
+                    b.Navigation("TicketType");
+
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TaskManagerMVP.Models.Project", b =>
+            modelBuilder.Entity("TaskManagerMVP.Models.TicketPriority", b =>
+                {
+                    b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("TaskManagerMVP.Models.TicketStatus", b =>
+                {
+                    b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("TaskManagerMVP.Models.TicketType", b =>
                 {
                     b.Navigation("Tickets");
                 });
