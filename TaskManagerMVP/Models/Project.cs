@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace TaskManagerMVP.Models
 {
@@ -26,7 +20,7 @@ namespace TaskManagerMVP.Models
         public bool IsActive { get; set; }
 
         //Navigation Properties
-        
+
         public List<Ticket> Tickets { get; set; }
     }
 }
