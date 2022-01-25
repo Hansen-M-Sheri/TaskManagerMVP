@@ -13,6 +13,8 @@ namespace TaskManagerMVP.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<TicketStatus>(x =>
             {
                 x.HasData(

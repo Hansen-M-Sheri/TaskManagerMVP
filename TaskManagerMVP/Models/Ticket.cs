@@ -31,11 +31,13 @@ namespace TaskManagerMVP.Models
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
 
+        //Navigation Properties
         [Display(Name = "User")]
         [Required(ErrorMessage = "User Id is required to map the contact to a user correctly")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
-        //Navigation Properties
+        
         [Display(Name = "Project")]
         [Required(ErrorMessage = "Project is required")]
         [ForeignKey("ProjectId")]
@@ -52,5 +54,7 @@ namespace TaskManagerMVP.Models
         public int TicketPriorityId { get; set; }
 
         public bool IsActive { get; set; }
+
+        
     }
 }
