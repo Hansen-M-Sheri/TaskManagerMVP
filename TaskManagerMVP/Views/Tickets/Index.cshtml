@@ -61,19 +61,19 @@
                 @Html.DisplayFor(modelItem => item.EndDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
+                @Html.DisplayFor(modelItem => item.User.UserName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Project.Description)
+                @Html.DisplayFor(modelItem => item.Project.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TicketType.Description)
+                @Html.DisplayFor(modelItem => item.TicketType.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TicketStatus.Description)
+                @Html.DisplayFor(modelItem => item.TicketStatus.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TicketPriority.Description)
+                @Html.DisplayFor(modelItem => item.TicketPriority.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsActive)
