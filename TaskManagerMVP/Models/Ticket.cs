@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TaskManagerMVP.Models
@@ -43,10 +44,10 @@ namespace TaskManagerMVP.Models
         
         [Display(Name = "Priority")]
         public int TicketPriorityId { get; set; }
-        
+        [DefaultValue(true)]
         public bool IsActive { get; set; }
 
-        //Hack-made all nav properties nullable to avoid modelState.isValid = false in create/edit tickets
+        //Hack-made all nav properties nullable to avoid modelState.isValid = false in create/edit tickets not sure how to do it correctly
         //Navigation Properties
         public ApplicationUser? User { get; set; }
         public Project? Project { get; set; }
