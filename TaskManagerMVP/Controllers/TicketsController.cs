@@ -53,11 +53,11 @@ namespace TaskManagerMVP.Controllers
         // GET: Tickets/Create
         public IActionResult Create()
         {
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Description");
-            ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Description");
-            ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Description");
-            ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes, "Id", "Description");
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name");
+            ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Name");
+            ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Name");
+            ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes, "Id", "Name");
+            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "UserName");
             return View();
         }
 
@@ -74,11 +74,11 @@ namespace TaskManagerMVP.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Description", ticket.ProjectId);
-            ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Description", ticket.TicketPriorityId);
-            ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Description", ticket.TicketStatusId);
-            ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes, "Id", "Description", ticket.TicketTypeId);
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", ticket.UserId);
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name", ticket.ProjectId);
+            ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Name", ticket.TicketPriorityId);
+            ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Name", ticket.TicketStatusId);
+            ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes, "Id", "Name", ticket.TicketTypeId);
+            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "UserName", ticket.UserId);
             return View(ticket);
         }
 
@@ -95,11 +95,11 @@ namespace TaskManagerMVP.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Description", ticket.ProjectId);
-            ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Description", ticket.TicketPriorityId);
-            ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Description", ticket.TicketStatusId);
-            ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes, "Id", "Description", ticket.TicketTypeId);
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", ticket.UserId);
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name", ticket.ProjectId);
+            ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Name", ticket.TicketPriorityId);
+            ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Name", ticket.TicketStatusId);
+            ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes, "Id", "Name", ticket.TicketTypeId);
+            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "UserName", ticket.UserId);
             return View(ticket);
         }
 
@@ -135,11 +135,11 @@ namespace TaskManagerMVP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Description", ticket.ProjectId);
-            ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Description", ticket.TicketPriorityId);
-            ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Description", ticket.TicketStatusId);
-            ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes, "Id", "Description", ticket.TicketTypeId);
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", ticket.UserId);
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name", ticket.ProjectId);
+            ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Name", ticket.TicketPriorityId);
+            ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Name", ticket.TicketStatusId);
+            ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes, "Id", "Name", ticket.TicketTypeId);
+            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "UserName", ticket.UserId);
             return View(ticket);
         }
 
