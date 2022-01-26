@@ -4,7 +4,7 @@
 
 namespace TaskManagerMVP.Migrations
 {
-    public partial class increasemaxminlength : Migration
+    public partial class IncreaseMaxMinLength : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

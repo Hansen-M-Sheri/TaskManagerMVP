@@ -4,7 +4,7 @@
 
 namespace TaskManagerMVP.Migrations
 {
-    public partial class adjustrelationships : Migration
+    public partial class AdjustRelationships : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,4 +16,5 @@ namespace TaskManagerMVP.Migrations
 
         }
     }
+
 }

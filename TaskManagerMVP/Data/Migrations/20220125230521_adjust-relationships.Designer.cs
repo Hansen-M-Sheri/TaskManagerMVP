@@ -13,7 +13,7 @@ namespace TaskManagerMVP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20220125230521_adjust-relationships")]
-    partial class adjustrelationships
+    partial class AdjustRelationships
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

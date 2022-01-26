@@ -13,7 +13,7 @@ namespace TaskManagerMVP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20220126153024_increase-max-min-length")]
-    partial class increasemaxminlength
+    partial class IncreaseMaxMinLength
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
