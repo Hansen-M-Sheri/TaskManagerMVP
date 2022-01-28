@@ -21,10 +21,30 @@ namespace TaskManagerMVP.Controllers
         }
 
         // GET: Tickets
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string ticketProject)
         {
-            var applicationDbContext = _context.Tickets.Include(t => t.Project).Include(t => t.TicketPriority).Include(t => t.TicketStatus).Include(t => t.TicketType).Include(t => t.User);
-            return View(await applicationDbContext.ToListAsync());
+            //Use LINQ to get list of projects
+            IQueryable<string> projectsQuery = from t in _context.Projects
+                                               orderby t.Name
+                                               select t.Name;
+            //allow for search options
+            var tickets =  _context.Tickets
+                              .Include(t => t.Project).Include(t => t.TicketPriority).Include(t => t.TicketStatus).Include(t => t.TicketType).Include(t => t.User); ;
+            if (!String.IsNullOrEmpty(ticketProject))
+            {
+                tickets = _context.Tickets
+                    .Where(s => s.Project.Name!.Contains(ticketProject)) 
+                    .Include(t => t.Project).Include(t => t.TicketPriority).Include(t => t.TicketStatus).Include(t => t.TicketType).Include(t => t.User);
+            }
+          
+            var ticketProjectVM = new TicketProjectViewModel()
+            {
+                Projects = new SelectList(await projectsQuery.Distinct().ToListAsync()),
+                Tickets = await tickets.ToListAsync()
+            };
+
+           
+                return View(ticketProjectVM);
         }
 
         // GET: Tickets/Details/5

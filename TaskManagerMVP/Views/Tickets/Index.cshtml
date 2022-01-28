@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TaskManagerMVP.Models.Ticket>
+﻿@model TaskManagerMVP.Models.TicketProjectViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -9,38 +9,50 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form asp-controller="Tickets" asp-action="Index" method="get">
+    <p>
+        Project: <select asp-for="TicketProject" asp-items="Model.Projects">
+            <option value="">All</option>
+        </select>
+
+        @*Ticket Name: <input type="text" name="SearchString" />*@
+        <input type="submit" value="Search" />
+
+
+    </p>
+</form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Tickets[0].Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Project)
+                @Html.DisplayNameFor(model => model.Tickets[0].Project)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TicketPriority)
+                @Html.DisplayNameFor(model => model.Tickets[0].TicketPriority)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TicketStatus)
+                @Html.DisplayNameFor(model => model.Tickets[0].TicketStatus)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TicketType)
+                @Html.DisplayNameFor(model => model.Tickets[0].TicketType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.Tickets[0].Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StartDate)
+                @Html.DisplayNameFor(model => model.Tickets[0].StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EndDate)
+                @Html.DisplayNameFor(model => model.Tickets[0].EndDate)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Tickets) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
