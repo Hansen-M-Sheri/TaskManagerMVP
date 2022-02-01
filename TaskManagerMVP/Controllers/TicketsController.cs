@@ -38,9 +38,9 @@ namespace TaskManagerMVP.Controllers
                                                orderby t.Name
                                                select t.Name;
             //Set query to get tickets only for logged in user
-            var tickets =  _context.Tickets
+            var tickets = _context.Tickets
                               .Where(x => x.UserId == userId)
-                              .Include(t => t.Project).Include(t => t.TicketPriority).Include(t => t.TicketStatus).Include(t => t.TicketType).Include(t => t.User); 
+                              .Include(t => t.Project).Include(t => t.TicketPriority).Include(t => t.TicketStatus).Include(t => t.TicketType).Include(t => t.User);
             if (User.IsInRole("Admin")) //query to get ALL tickets if admin
             {
                 tickets = _context.Tickets
@@ -49,18 +49,18 @@ namespace TaskManagerMVP.Controllers
             else if (!String.IsNullOrEmpty(ticketProject))
             {
                 tickets = _context.Tickets
-                    .Where(s => s.Project.Name!.Contains(ticketProject)) 
+                    .Where(s => s.Project.Name!.Contains(ticketProject))
                     .Include(t => t.Project).Include(t => t.TicketPriority).Include(t => t.TicketStatus).Include(t => t.TicketType).Include(t => t.User);
             }
-          
+
             var ticketProjectVM = new TicketProjectViewModel()
             {
                 Projects = new SelectList(await projectsQuery.Distinct().ToListAsync()),
                 Tickets = await tickets.ToListAsync()
             };
 
-           
-                return View(ticketProjectVM);
+
+            return View(ticketProjectVM);
         }
 
         // GET: Tickets/Details/5
@@ -104,7 +104,7 @@ namespace TaskManagerMVP.Controllers
             ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Name");
             ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes, "Id", "Name");
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "UserName");
-            
+
             return View();
         }
 
@@ -126,7 +126,7 @@ namespace TaskManagerMVP.Controllers
             ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Name", ticket.TicketPriorityId);
             ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Name", ticket.TicketStatusId);
             ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes, "Id", "Name", ticket.TicketTypeId);
-           
+
             if (User.IsInRole("Admin"))
             {
                 ViewData["UserId"] = new SelectList(_context.Users, "Id", "UserName", ticket.UserId);
@@ -167,8 +167,8 @@ namespace TaskManagerMVP.Controllers
             {
                 return Forbid(); //only admins and users should see their own tickets
             }
-            
-            
+
+
         }
 
         // POST: Tickets/Edit/5
@@ -217,7 +217,7 @@ namespace TaskManagerMVP.Controllers
             {
                 return Forbid();
             }
-            
+
         }
 
         // GET: Tickets/Delete/5
@@ -229,7 +229,7 @@ namespace TaskManagerMVP.Controllers
                 return NotFound();
             }
 
-            
+
             var ticket = await _context.Tickets
                 .Include(t => t.Project)
                 .Include(t => t.TicketPriority)
@@ -251,7 +251,7 @@ namespace TaskManagerMVP.Controllers
                 return Forbid();
             }
 
-            
+
         }
 
         // POST: Tickets/Delete/5
