@@ -15,7 +15,6 @@
             <option value="">All</option>
         </select>
 
-        @*Ticket Name: <input type="text" name="SearchString" />*@
         <input type="submit" value="Search" />
 
 
@@ -48,6 +47,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Tickets[0].EndDate)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tickets[0].User)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -78,6 +80,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.EndDate)
             </td>
+            <th>
+                @Html.DisplayFor(model => item.User.UserName)
+            </th>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
