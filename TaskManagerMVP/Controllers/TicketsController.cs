@@ -53,14 +53,7 @@ namespace TaskManagerMVP.Controllers
                     .Include(t => t.Project).Include(t => t.TicketPriority).Include(t => t.TicketStatus).Include(t => t.TicketType).Include(t => t.User);
             }
 
-            var ticketProjectVM = new TicketProjectViewModel()
-            {
-                Projects = new SelectList(await projectsQuery.Distinct().ToListAsync()),
-                Tickets = await tickets.ToListAsync()
-            };
-
-
-            return View(ticketProjectVM);
+            return View(tickets);
         }
 
         // GET: Tickets/Details/5
