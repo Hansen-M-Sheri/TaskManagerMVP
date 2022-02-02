@@ -98,7 +98,7 @@ namespace TaskManagerMVP.Controllers
         public IActionResult Create()
         {
             var userId = GetCurrentUserId();
-
+           
             ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name");
             ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Name");
             ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Name");
@@ -115,28 +115,29 @@ namespace TaskManagerMVP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Description,StartDate,EndDate,UserId,ProjectId,TicketTypeId,TicketStatusId,TicketPriorityId,IsActive")] Ticket ticket)
         {
-            var userId = GetCurrentUserId();
-            if (ModelState.IsValid)
+            var userId = await GetCurrentUserId();
+            if (ticket.UserId == userId || User.IsInRole("Admin"))
             {
-                _context.Add(ticket);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name", ticket.ProjectId);
-            ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Name", ticket.TicketPriorityId);
-            ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Name", ticket.TicketStatusId);
-            ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes, "Id", "Name", ticket.TicketTypeId);
-
-            if (User.IsInRole("Admin"))
-            {
+                if (ModelState.IsValid)
+                {
+                    
+                    _context.Add(ticket);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+            
+                ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name", ticket.ProjectId);
+                ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Name", ticket.TicketPriorityId);
+                ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Name", ticket.TicketStatusId);
+                ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes, "Id", "Name", ticket.TicketTypeId);
                 ViewData["UserId"] = new SelectList(_context.Users, "Id", "UserName", ticket.UserId);
 
+                return View(ticket);
             }
             else
             {
-                ViewData["UserId"] = userId;
+                return Forbid();
             }
-            return View(ticket);
         }
 
         // GET: Tickets/Edit/5
