@@ -1,4 +1,4 @@
-﻿@model TaskManagerMVP.Models.TicketProjectViewModel
+﻿@model IEnumerable<TaskManagerMVP.Models.Ticket>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,67 +9,47 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<form asp-controller="Tickets" asp-action="Index" method="get">
-    <p>
-        Project: <select asp-for="TicketProject" asp-items="Model.Projects">
-            <option value="">All</option>
-        </select>
-
-        <input type="submit" value="Search" />
-
-
-    </p>
-</form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Tickets[0].Name)
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tickets[0].Project)
+                @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tickets[0].TicketPriority)
+                @Html.DisplayNameFor(model => model.StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tickets[0].TicketStatus)
+                @Html.DisplayNameFor(model => model.EndDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tickets[0].TicketType)
+                @Html.DisplayNameFor(model => model.User)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tickets[0].Description)
+                @Html.DisplayNameFor(model => model.Project)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tickets[0].StartDate)
+                @Html.DisplayNameFor(model => model.TicketTypeId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tickets[0].EndDate)
+                @Html.DisplayNameFor(model => model.TicketStatusId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tickets[0].User)
+                @Html.DisplayNameFor(model => model.TicketPriorityId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Tickets) {
+@foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Project.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TicketPriority.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TicketStatus.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TicketType.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
@@ -80,9 +60,24 @@
             <td>
                 @Html.DisplayFor(modelItem => item.EndDate)
             </td>
-            <th>
-                @Html.DisplayFor(model => item.User.UserName)
-            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketTypeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketStatusId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketPriorityId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
