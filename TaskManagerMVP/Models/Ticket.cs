@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TaskManagerMVP.Models
 {
@@ -29,7 +28,7 @@ namespace TaskManagerMVP.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
 
-        
+
         [Display(Name = "User")]
         [Required(ErrorMessage = "User Id is required to map the contact to a user correctly")]
         public string UserId { get; set; }
@@ -37,13 +36,13 @@ namespace TaskManagerMVP.Models
         [Display(Name = "Project")]
         [Required(ErrorMessage = "Project is required")]
         public int ProjectId { get; set; }
-        
+
         [Display(Name = "Ticket Type")]
         public int TicketTypeId { get; set; }
-        
+
         [Display(Name = "Status")]
         public int TicketStatusId { get; set; }
-        
+
         [Display(Name = "Priority")]
         public int TicketPriorityId { get; set; }
         [DefaultValue(true)]
