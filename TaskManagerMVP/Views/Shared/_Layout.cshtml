@@ -29,30 +29,30 @@
                         }
                         @if (User?.Identity?.Name?.ToString().Length > 0) //user logged in
                         {
-                            <li class="nav-item" active>
-                                <a class="nav-link text-dark @(ViewContext?.RouteData?.Values["Controller"]?.ToString() == "Tickets"
+                            <li class="nav-item hover-link" active>
+                                <a class="nav-link text-dark  @(ViewContext?.RouteData?.Values["Controller"]?.ToString() == "Tickets"
                                                                     && ViewContext?.RouteData?.Values["Action"]?.ToString() == "Index"
                                                          ? "active-link" : "")" asp-area="" asp-controller="Tickets" asp-action="Index">Tickets</a>
                             </li>
-                            <li class="nav-item" active>
-                                <a class="nav-link text-dark @(ViewContext?.RouteData?.Values["Controller"]?.ToString() == "Projects"
+                            <li class="nav-item hover-link" active>
+                                <a class="nav-link text-dark  @(ViewContext?.RouteData?.Values["Controller"]?.ToString() == "Projects"
                                                                     && ViewContext?.RouteData?.Values["Action"]?.ToString() == "Index"
                                                          ? "active-link" : "")" asp-area="" asp-controller="Projects" asp-action="Index">Projects</a>
                             </li>
                             @if (User?.IsInRole("Admin") ?? false)
                             {
-                                <li class="nav-item" active>
-                                    <a class="nav-link text-dark @(ViewContext?.RouteData?.Values["Controller"]?.ToString() == "TicketPriorities"
+                                <li class="nav-item hover-link" active>
+                                    <a class="nav-link text-dark  @(ViewContext?.RouteData?.Values["Controller"]?.ToString() == "TicketPriorities"
                                                                         && ViewContext?.RouteData?.Values["Action"]?.ToString() == "Index"
                                                              ? "active-link" : "")" asp-area="" asp-controller="TicketPriorities" asp-action="Index">Priorities</a>
                                 </li>
-                                <li class="nav-item" active>
-                                    <a class="nav-link text-dark @(ViewContext?.RouteData?.Values["Controller"]?.ToString() == "TicketStatus"
+                                <li class="nav-item hover-link" active>
+                                    <a class="nav-link text-dark  @(ViewContext?.RouteData?.Values["Controller"]?.ToString() == "TicketStatus"
                                                                         && ViewContext?.RouteData?.Values["Action"]?.ToString() == "Index"
                                                              ? "active-link" : "")" asp-area="" asp-controller="TicketStatus" asp-action="Index">Status</a>
                                 </li>
-                                <li class="nav-item" active>
-                                    <a class="nav-link text-dark @(ViewContext?.RouteData?.Values["Controller"]?.ToString() == "TicketTypes"
+                                <li class="nav-item hover-link" active>
+                                    <a class="nav-link text-dark  @(ViewContext?.RouteData?.Values["Controller"]?.ToString() == "TicketTypes"
                                                                         && ViewContext?.RouteData?.Values["Action"]?.ToString() == "Index"
                                                              ? "active-link" : "")" asp-area="" asp-controller="TicketTypes" asp-action="Index">Types</a>
                                 </li>
