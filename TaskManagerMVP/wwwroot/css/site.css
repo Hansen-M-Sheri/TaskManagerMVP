@@ -42,6 +42,7 @@ body {
 
 .button-default-width {
     width: 225px;
+    border-color: #50B2C0 !important
 }
 
 .padding-top-25 {
