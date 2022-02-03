@@ -20,12 +20,12 @@ namespace TaskManagerMVP.Models
 
         [Display(Name = "Start Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+       
         public DateTime StartDate { get; set; } = DateTime.Now;
 
         [Display(Name = "Due Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        
         public DateTime EndDate { get; set; }
 
 

@@ -75,7 +75,19 @@
             
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                 <a href="#" data-bs-toggle="modal"  
+                    data-bs-target="#ticketDetailsModal"
+                    data-bs-title=" Ticket Details"
+                    data-bs-name="@item.Name"
+                    data-bs-description="@item.Description" 
+                    data-bs-startDate="@item.StartDate.ToShortDateString()"
+                    data-bs-endDate="@item.EndDate.ToShortDateString()"
+                    data-bs-isActive="@item.IsActive"
+                    data-bs-project="@item.Project.Name"
+                    data-bs-type="@item.TicketType.Name"
+                    data-bs-status="@item.TicketStatus.Name"
+                    data-bs-priority="@item.TicketPriority.Name"
+                 >Details </a>|
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
@@ -83,9 +95,123 @@
     </tbody>
 </table>
 
+<div class="modal fade" id="ticketDetailsModal" tabindex="-1" aria-labelledby="ticketDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h5 class="modal-title" id="ticketDetailsModalLabel">New message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <dl class="row">
+                    <dt class="col-sm-4">
+                        Name
+                    </dt>
+                    <dd class="col-sm-8">
+                        <span class="modal-name"></span>
+                    </dd>
+                    <dt class="col-sm-4">
+                        Description
+                    </dt>
+                    <dd class="col-sm-8">
+                        <span class="modal-description"></span>
+                    </dd>
+                    <dt class="col-sm-4">
+                        Start Date
+                    </dt>
+                    <dd class="col-sm-8">
+                        <span class="modal-startDate"></span>
+                    </dd>
+                    <dt class="col-sm-4">
+                        End Date
+                        </dt>
+                    <dd class="col-sm-8">
+                        <span class="modal-endDate"></span>
+                    </dd>
+                    <dt class="col-sm-4">
+                        Project
+                        </dt>
+                    <dd class="col-sm-8">
+                        <span class="modal-project"></span>
+                    </dd>
+                    <dt class="col-sm-4">
+                        Type
+                        </dt>
+                    <dd class="col-sm-8">
+                        <span class="modal-type"></span>
+                    </dd>
+                    <dt class="col-sm-4">
+                        Status
+                        </dt>
+                    <dd class="col-sm-8">
+                        <span class="modal-status"></span>
+                    </dd>
+                    <dt class="col-sm-4">
+                        Priority
+                        </dt>
+                    <dd class="col-sm-8">
+                        <span class="modal-priority"></span>
+                    </dd>
+                    <dt class="col-sm-4">
+                        Is Active
+                        </dt>
+                    <dd class="col-sm-8">
+                        <span class="modal-isActive"></span>
+                    </dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section scripts
 {
     <script type="text/javascript">
         $("#tickets_table").DataTable();
+
+                var ticketDetailsModal = document.getElementById('ticketDetailsModal')
+        ticketDetailsModal.addEventListener('show.bs.modal', function(event) {
+            // Button that triggered the modal
+            var button = event.relatedTarget
+                // Extract info from data-bs-* attributes
+            var title = button.getAttribute('data-bs-title')
+            var name = button.getAttribute('data-bs-name')
+            var description = button.getAttribute('data-bs-description')
+            var startDate = button.getAttribute('data-bs-startDate')
+            var endDate = button.getAttribute('data-bs-endDate')
+            var isActive = button.getAttribute('data-bs-isActive')
+            var project = button.getAttribute('data-bs-project')
+            var type = button.getAttribute('data-bs-type')
+            var status = button.getAttribute('data-bs-status')
+            var priority = button.getAttribute('data-bs-priority')
+
+            var modalTitle = ticketDetailsModal.querySelector('.modal-title');
+            modalTitle.textContent = title;
+            var modalName = ticketDetailsModal.querySelector('.modal-name');
+            modalName.textContent = name;
+            var modalDescription = ticketDetailsModal.querySelector('.modal-description');
+            modalDescription.textContent = description;
+            var modalStartDate = ticketDetailsModal.querySelector('.modal-startDate');
+            modalStartDate.textContent = startDate;
+            var modalEndDate = ticketDetailsModal.querySelector('.modal-endDate');
+            modalEndDate.textContent = endDate;
+            var modalIsActive = ticketDetailsModal.querySelector('.modal-isActive');
+            modalIsActive.textContent = isActive;
+            var modalProject = ticketDetailsModal.querySelector('.modal-project');
+            modalProject.textContent = project;
+            var modalType = ticketDetailsModal.querySelector('.modal-type');
+            modalType.textContent = type;
+            var modalStatus = ticketDetailsModal.querySelector('.modal-status');
+            modalStatus.textContent = status;
+            var modalPriority = ticketDetailsModal.querySelector('.modal-priority');
+            modalPriority.textContent = priority;
+
+
+            modalTitle.textContent = 'New message to ' + recipient
+
+        })
     </script>
 }
