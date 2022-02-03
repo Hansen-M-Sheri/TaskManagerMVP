@@ -19,7 +19,7 @@ namespace TaskManagerMVP.Models
 
         public bool IsActive { get; set; }
 
-       //Navigation Properties
-       public List<Ticket> Tickets { get; set; }
+        //Navigation Properties
+        public List<Ticket> Tickets { get; set; }
     }
 }

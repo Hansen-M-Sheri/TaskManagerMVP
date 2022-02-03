@@ -1,9 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaskManagerMVP.Models;
 
 namespace TaskManagerMVP.Data
@@ -24,7 +19,7 @@ namespace TaskManagerMVP.Data
         private async Task EnsureRoles()
         {
             var existingRole = await _roleManager.FindByNameAsync(ADMIN_ROLE_NAME);
-            if(existingRole == null)
+            if (existingRole == null)
             {
                 var adminRole = new IdentityRole()
                 {
@@ -58,7 +53,7 @@ namespace TaskManagerMVP.Data
             await EnsureUsers();
             var existingAdminUser = await _userManager.FindByEmailAsync(ADMIN_USER_EMAIL);
             var existingRole = await _roleManager.FindByNameAsync(ADMIN_ROLE_NAME);
-            if(existingAdminUser is null || existingRole is null)
+            if (existingAdminUser is null || existingRole is null)
             {
                 throw new InvalidOperationException("Cannot add null user/role combination");
             }
@@ -66,7 +61,7 @@ namespace TaskManagerMVP.Data
             var userRoles = await _userManager.GetRolesAsync(existingAdminUser);
             var existingUserAdminRole = userRoles.SingleOrDefault(x => x.Equals(ADMIN_ROLE_NAME));
 
-            if(existingUserAdminRole is null)
+            if (existingUserAdminRole is null)
             {
                 await _userManager.AddToRoleAsync(existingAdminUser, ADMIN_ROLE_NAME);
             }

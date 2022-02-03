@@ -1,13 +1,9 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using TaskManagerMVP.Data;
 using TaskManagerMVP.Models;
 
@@ -91,7 +87,7 @@ namespace TaskManagerMVP.Controllers
         public IActionResult Create()
         {
             var userId = GetCurrentUserId();
-           
+
             ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name");
             ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Name");
             ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Name");
@@ -113,12 +109,12 @@ namespace TaskManagerMVP.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    
+
                     _context.Add(ticket);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
-            
+
                 ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name", ticket.ProjectId);
                 ViewData["TicketPriorityId"] = new SelectList(_context.Priorities, "Id", "Name", ticket.TicketPriorityId);
                 ViewData["TicketStatusId"] = new SelectList(_context.Statuses, "Id", "Name", ticket.TicketStatusId);
