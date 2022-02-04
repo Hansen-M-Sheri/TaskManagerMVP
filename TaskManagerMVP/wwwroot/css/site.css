@@ -38,6 +38,27 @@ body {
 
 .btn-primary {
     background-color: #50B2C0 !important;
+    border-color: #50B2C0 !important
+}
+
+.btn-default-small {
+    color: #E16684 !important;
+    border-color: #E16684 !important;
+}
+.page-item.active .page-link {
+    background-color: #50B2C0 !important;
+    border-color: #50B2C0 !important;
+    color: #fff !important;
+    outline: none !important;
+}
+
+
+
+.page-link {
+    color: #E16684 !important;
+}
+.page-link:hover {
+    color: #fff !important;
 }
 
 .button-default-width {

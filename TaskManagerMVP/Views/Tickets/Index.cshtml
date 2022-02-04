@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-default-small">Create New</a>
 </p>
 <table id="tickets_table" class="table">
     <thead>
@@ -95,6 +95,7 @@
     </tbody>
 </table>
 
+<!--TICKET DETAILS MODAL-->
 <div class="modal fade" id="ticketDetailsModal" tabindex="-1" aria-labelledby="ticketDetailsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -161,7 +162,7 @@
                 </dl>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -171,8 +172,8 @@
 {
     <script type="text/javascript">
         $("#tickets_table").DataTable();
-
-                var ticketDetailsModal = document.getElementById('ticketDetailsModal')
+        //Ticket Details Modal
+        var ticketDetailsModal = document.getElementById('ticketDetailsModal')
         ticketDetailsModal.addEventListener('show.bs.modal', function(event) {
             // Button that triggered the modal
             var button = event.relatedTarget
@@ -208,10 +209,9 @@
             modalStatus.textContent = status;
             var modalPriority = ticketDetailsModal.querySelector('.modal-priority');
             modalPriority.textContent = priority;
-
-
-            modalTitle.textContent = 'New message to ' + recipient
-
+            
         })
+
+
     </script>
 }
