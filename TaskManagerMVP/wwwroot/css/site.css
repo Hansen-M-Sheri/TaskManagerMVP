@@ -140,3 +140,13 @@ h5 {
 .credential {
     margin-top: 20px !important;
 }
+
+/*Profile links*/
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: #50B2C0 !important;
+    border-color: #50B2C0 !important;
+    
+}
+.nav-link {
+    color: #E16684 !important;
+}
