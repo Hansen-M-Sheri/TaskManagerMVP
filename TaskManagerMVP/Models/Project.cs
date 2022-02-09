@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace TaskManagerMVP.Models
 {
@@ -20,6 +21,7 @@ namespace TaskManagerMVP.Models
         public bool IsActive { get; set; }
 
         //Navigation Properties
+        [ValidateNever]
         public List<Ticket> Tickets { get; set; }
     }
 }

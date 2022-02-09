@@ -54,6 +54,7 @@ namespace TaskManagerMVP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Description,IsActive")] Project project)
         {
+           
             if (ModelState.IsValid)
             {
                 _context.Add(project);
